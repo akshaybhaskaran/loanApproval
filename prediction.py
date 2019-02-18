@@ -1,6 +1,9 @@
 import pandas as pd
-from sklearn.preprocessing import Imputer
-from sklearn import preprocessing
+import numpy as np
+from sklearn.preprocessing import LabelEncoder
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import learning_curve
+import matplotlib.pyplot as plt
 
 train = pd.read_csv('train.csv', delimiter=",")
 test = pd.read_csv('test.csv', delimiter=",")
@@ -25,16 +28,24 @@ train['Dependents'].fillna(method='ffill', inplace=True)
 # Dropping Loan_ID feature as it doesn't contribute much
 train.drop('Loan_ID', axis=1, inplace=True)
 
-print(train.columns)
 
-
-
+# Encoding text to numerical values
+label_encoder = LabelEncoder()
 for i in train.columns:
     if train[i].dtype == 'O':
-        print(set(train[i].tolist()))
+        train[i] = label_encoder.fit_transform(train[i])
+
+input_features = ['Gender', 'Married', 'Dependents', 'Education', 'Self_Employed',
+       'ApplicantIncome', 'CoapplicantIncome', 'LoanAmount',
+       'Loan_Amount_Term', 'Credit_History', 'Property_Area']
+
+train_X = train[input_features]
+train_y = train['Loan_Status']
 
 
-
-
-
-
+'''
+Next steps:
+i. Split the model into train and CV sets
+ii. Plot learning curves
+iii. Based on the curves, work around the features and parameters
+'''
