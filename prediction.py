@@ -2,8 +2,8 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
 from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import learning_curve
-import matplotlib.pyplot as plt
+from sklearn.ensemble import GradientBoostingClassifier
+from learningcurve import *
 
 train = pd.read_csv('train.csv', delimiter=",")
 test = pd.read_csv('test.csv', delimiter=",")
@@ -42,10 +42,9 @@ input_features = ['Gender', 'Married', 'Dependents', 'Education', 'Self_Employed
 train_X = train[input_features]
 train_y = train['Loan_Status']
 
+estimator = LogisticRegression()
 
-'''
-Next steps:
-i. Split the model into train and CV sets
-ii. Plot learning curves
-iii. Based on the curves, work around the features and parameters
-'''
+
+plot_learning_curve(train_X, train_y, estimator)
+
+
