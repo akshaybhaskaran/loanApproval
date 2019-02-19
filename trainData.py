@@ -2,16 +2,16 @@ from sklearn.preprocessing import LabelEncoder
 
 
 def prep_train_data(train):
-    # Filling missing values with 'Mean'
-    train['Credit_History'].fillna(train['Credit_History'].mean(), inplace=True)
-    train['Loan_Amount_Term'].fillna(train['Loan_Amount_Term'].mean(), inplace=True)
-    train['LoanAmount'].fillna(train['LoanAmount'].mean(), inplace=True)
+    # Filling missing values with 'Mode'
+    train['Credit_History'].fillna(train['Credit_History'].mode()[0], inplace=True)
+    train['Gender'].fillna(train['Gender'].mode(), inplace=True)
+    train['Married'].fillna(train['Married'].mode(), inplace=True)
+    train['Self_Employed'].fillna(train['Self_Employed'].mode(), inplace=True)
+    train['Dependents'].fillna(train['Dependents'].mode(), inplace=True)
+    train['Loan_Amount_Term'].fillna(train['Loan_Amount_Term'].mode()[0], inplace=True)
 
-    # Filling missing values with 'Forward Fill'
-    train['Gender'].fillna(method='ffill', inplace=True)
-    train['Married'].fillna(method='ffill', inplace=True)
-    train['Self_Employed'].fillna(method='ffill', inplace=True)
-    train['Dependents'].fillna(method='ffill', inplace=True)
+    # Filling missing Loan Amount values with 'Median'
+    train['LoanAmount'].fillna(train['LoanAmount'].median(), inplace=True)
 
     # Dropping Loan_ID feature as it doesn't contribute much
     train.drop('Loan_ID', axis=1, inplace=True)
@@ -28,6 +28,7 @@ def prep_train_data(train):
 
     train_X = train[input_features]
     train_y = train['Loan_Status']
+
 
 
     return train_X, train_y
