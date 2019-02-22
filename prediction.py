@@ -31,9 +31,10 @@ estimator = model
 plot_learning_curve(train_X, train_y, estimator)
 
 
-# submit['Loan_Status'] = prediction
-# submit.to_csv("sample_submission4.csv", index=False)
 
+# submit['Loan_Status'] = prediction
+# submit['Loan_Status'] = np.where(submit.Loan_Status == 1, "Y", "N")
+# submit.to_csv("sample_submission1.csv", index=False)
 
 
 
