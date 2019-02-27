@@ -7,8 +7,8 @@ from logisticRegression import *
 
 train = pd.read_csv('train.csv', delimiter=",")
 test = pd.read_csv('test.csv', delimiter=",")
-#submit = pd.read_csv('submission.csv')
-#submit['Loan_ID'] = test['Loan_ID']
+submit = pd.read_csv('sample_submission1.csv')
+submit['Loan_ID'] = test['Loan_ID']
 
 # Code for preparing Train and Test data
 train_X, train_y = prep_train_data(train)
@@ -32,9 +32,9 @@ nn_prediction = build_neuralNet(train_X, train_y, test_X)
 
 
 
-# submit['Loan_Status'] = prediction
-# submit['Loan_Status'] = np.where(submit.Loan_Status == 1, "Y", "N")
-# submit.to_csv("sample_submission1.csv", index=False)
+#submit['Loan_Status'] = nn_prediction
+#submit['Loan_Status'] = np.where(submit.Loan_Status == 1, "Y", "N")
+#submit.to_csv("sample_submission2.csv", index=False)
 
 
 
