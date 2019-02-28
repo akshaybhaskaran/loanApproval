@@ -4,10 +4,10 @@ from sklearn.preprocessing import LabelEncoder
 def prep_train_data(train):
     # Filling missing values with 'Mode'
     train['Credit_History'].fillna(train['Credit_History'].mode()[0], inplace=True)
-    train['Gender'].fillna(train['Gender'].mode(), inplace=True)
-    train['Married'].fillna(train['Married'].mode(), inplace=True)
-    train['Self_Employed'].fillna(train['Self_Employed'].mode(), inplace=True)
-    train['Dependents'].fillna(train['Dependents'].mode(), inplace=True)
+    train['Gender'].fillna(train['Gender'].mode()[0], inplace=True)
+    train['Married'].fillna(train['Married'].mode()[0], inplace=True)
+    train['Self_Employed'].fillna(train['Self_Employed'].mode()[0], inplace=True)
+    train['Dependents'].fillna(train['Dependents'].mode()[0], inplace=True)
     train['Loan_Amount_Term'].fillna(train['Loan_Amount_Term'].mode()[0], inplace=True)
 
     # Filling missing Loan Amount values with 'Median'

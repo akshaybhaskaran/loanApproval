@@ -4,9 +4,9 @@ from sklearn.preprocessing import LabelEncoder
 
 def prep_test_data(test):
     # Filling missing values with 'Mode'
-    test['Gender'].fillna(test['Gender'].mode(), inplace=True)
-    test['Dependents'].fillna(test['Dependents'].mode(), inplace=True)
-    test['Self_Employed'].fillna(test['Self_Employed'].mode(), inplace=True)
+    test['Gender'].fillna(test['Gender'].mode()[0], inplace=True)
+    test['Dependents'].fillna(test['Dependents'].mode()[0], inplace=True)
+    test['Self_Employed'].fillna(test['Self_Employed'].mode()[0], inplace=True)
     test['Credit_History'].fillna(test['Credit_History'].mode()[0], inplace=True)
     test['Loan_Amount_Term'].fillna(test['Loan_Amount_Term'].mode()[0], inplace=True)
 
