@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 train = pd.read_csv('train.csv', delimiter=",")
 test = pd.read_csv('test.csv', delimiter=",")
-submit = pd.read_csv('sample_submission1.csv')
+submit = pd.read_csv('sample_submission2.csv')
 submit['Loan_ID'] = test['Loan_ID']
 
 # Code for preparing Train and Test data
@@ -29,14 +29,14 @@ test_X:   [367 x 11]
 # X_train, X_test, y_train, y_test = train_test_split(train_X, train_y, test_size=0.3, random_state=0)
 
 #lr_prediction = build_logisticRegression(train_X, train_y, test_X)
-#nn_prediction = build_neuralNet(train_X, train_y, test_X)
+nn_prediction = build_neuralNet(train_X, train_y, test_X)
 
 
 
 
-#submit['Loan_Status'] = nn_prediction
-#submit['Loan_Status'] = np.where(submit.Loan_Status >= 0.5, "Y", "N")
-#submit.to_csv("sample_submission2.csv", index=False)
+submit['Loan_Status'] = nn_prediction
+submit['Loan_Status'] = np.where(submit.Loan_Status >= 0.5, "Y", "N")
+submit.to_csv("sample_submission2.csv", index=False)
 
 
 

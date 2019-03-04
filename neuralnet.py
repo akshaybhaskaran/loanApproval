@@ -16,8 +16,6 @@ def build_neuralNet(train_X, train_Y, test_X):
                        kernel_initializer='random_normal', input_dim=11))
     nn_model.add(Dense(15, activation='relu',
                        kernel_initializer='random_normal'))
-    nn_model.add(Dense(15, activation='relu',
-                       kernel_initializer='random_normal'))
     nn_model.add(Dense(1, activation='sigmoid',
                        kernel_initializer='random_normal'))
 
@@ -31,17 +29,8 @@ def build_neuralNet(train_X, train_Y, test_X):
 
 
     prediction = nn_model.predict(test_X)
-    print(prediction)
 
-    layer = nn_model.get_layer(index=2)
-    print(layer.get_weights())
-
-
-
-    #prediction = np.where(prediction >= 0.5, "Y", "N")
-    #print(prediction.shape)
-
-
+    return prediction
 
 
 
